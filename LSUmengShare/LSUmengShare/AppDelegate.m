@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "APPHeader.h"
+#import "LSUmengManager.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +18,24 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //设置AppKey
+    [LSUmengManager umengSetAppKey:UmengAppKey];
+    //集成新浪
+    [LSUmengManager umengSetSinaSSOWithRedirectURL:@"http://www.baidu.com"];
+    //集成微信
+    [LSUmengManager umengSetWXAppId:WXAPPID appSecret:@"" url:WXURL];
+    //集成qq
+    [LSUmengManager umengSetQQAppId:@"730356947" appSecret:@"" url:@"http://www.umeng.com/social"];
     // Override point for customization after application launch.
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [LSUmengManager umengHandleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [LSUmengManager umengHandleOpenURL:url]; 
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
