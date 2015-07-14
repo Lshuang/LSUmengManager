@@ -10,7 +10,7 @@
 #define LSUmengShare_APPHeader_h
 
 #define UmengAppKey @"55a4b88667e58e602d00303f"
-#define WXAPPID @""
+#define WXAPPID @"通过在微信平台获得的appID"
 #define WXAPPsecret @""
 #define WXURL @""
 
